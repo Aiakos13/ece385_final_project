@@ -1,0 +1,13 @@
+module  key_code ( 
+							  input 					frame_clk,
+							  input [15:0]   keycode,
+                       output logic [15:0] last_key_code
+                     );
+
+logic [15:0] register;
+assign last_key_code = register;						
+always_ff @ (posedge frame_clk)
+begin
+	 register = keycode;
+end
+endmodule

@@ -1,0 +1,144 @@
+module testbench ();
+
+timeunit 10ns;
+timeprecision 1ns;
+
+// Internal logic signals
+//logic clk, reset_n, run, ready;
+//logic [127:0] msg_en, msg_de, key;
+logic CLK;
+logic RESET;
+logic AES_START;
+logic AES_DONE;
+logic [127:0] AES_KEY;
+logic [127:0] AES_MSG_ENC;
+logic [127:0] AES_MSG_DEC;
+
+// Instantiate the AES module to be tested
+AES AES_module (.*);
+
+// Test program
+initial begin : TEST_PROGRAM
+    RESET = 0;
+    AES_START = 0;
+    AES_KEY    = 128'h000102030405060708090a0b0c0d0e0f;
+    AES_MSG_ENC = 128'hDAEC3055DF058E1C39E814EA76F6747E;
+
+    #4 RESET = 1;
+    #10 AES_START = 1;
+end
+/*
+
+module avalon_aes_interface (
+	// Avalon Clock Input
+	input logic CLK,
+	
+	// Avalon Reset Input
+	input logic RESET,
+	
+	// Avalon-MM Slave Signals
+	input  logic AVL_READ,					// Avalon-MM Read
+	input  logic AVL_WRITE,					// Avalon-MM Write
+	input  logic AVL_CS,						// Avalon-MM Chip Select
+	input  logic [3:0] AVL_BYTE_EN,		// Avalon-MM Byte Enable
+	input  logic [3:0] AVL_ADDR,			// Avalon-MM Address
+	input  logic [31:0] AVL_WRITEDATA,	// Avalon-MM Write Data
+	output logic [31:0] AVL_READDATA,	// Avalon-MM Read Data
+	
+	// Exported Conduit
+	output logic [31:0] EXPORT_DATA		// Exported Conduit Signal to LEDs
+
+	logic CLK;
+   logic RESET;
+	logic AVL_READ;					// Avalon-MM Read
+	logic AVL_WRITE;					// Avalon-MM Write
+	logic AVL_CS;						// Avalon-MM Chip Select
+	logic [3:0] AVL_BYTE_EN;		// Avalon-MM Byte Enable
+	logic [3:0] AVL_ADDR;			// Avalon-MM Address
+	logic [31:0] AVL_WRITEDATA;	// Avalon-MM Write Data
+	logic [31:0] AVL_READDATA;	// Avalon-MM Read Data
+	
+	// Exported Conduit
+	logic [31:0] EXPORT_DATA;		// Exported Conduit Signal to LEDs
+
+	avalon_aes_interface module0 (.*);
+	
+	// Test program
+initial begin : TEST_PROGRAM
+    RESET = 0;
+	 AVL_READ = 0;
+	 AVL_WRITE = 0;
+	 AVL_CS = 0;
+	 AVL_BYTE_EN = 4'h0;
+	 AVL_ADDR = 4'hD;
+	 AVL_WRITEDATA =32'hXXXXXXXX;
+    //AES_KEY    = 128'h000102030405060708090a0b0c0d0e0f;
+    //AES_MSG_ENC = 128'hDAEC3055DF058E1C39E814EA76F6747E;
+
+    #4 RESET = 1;
+	 #10 AVL_WRITEDATA = 32'h00010203;
+    #10 AVL_WRITE = 1;
+	 #10 AVL_CS = 1;
+	 #10 AVL_BYTE_EN = 4'hF;
+	 #10 AVL_ADDR = 4'h0;
+
+	 
+	 #10 AVL_WRITEDATA = 32'h04050607;
+    #10 AVL_WRITE = 1;
+	 #10 AVL_CS = 1;
+	 #10 AVL_BYTE_EN = 4'hF;
+	 #10 AVL_ADDR = 4'h1;
+	 
+	 #10 AVL_WRITEDATA = 32'h08090a0b;
+    #10 AVL_WRITE = 1;
+	 #10 AVL_CS = 1;
+	 #10 AVL_BYTE_EN = 4'hF;
+	 #10 AVL_ADDR = 4'h2;
+	 
+	 #10 AVL_WRITEDATA = 32'h0c0d0e0f;
+    #10 AVL_WRITE = 1;
+	 #10 AVL_CS = 1;
+	 #10 AVL_BYTE_EN = 4'hF;
+	 #10 AVL_ADDR = 4'h3;
+	 
+	 #10 AVL_WRITEDATA = 32'hDAEC3055;
+    #10 AVL_WRITE = 1;
+	 #10 AVL_CS = 1;
+	 #10 AVL_BYTE_EN = 4'hF;
+	 #10 AVL_ADDR = 4'h4;
+
+	 
+	 #10 AVL_WRITEDATA = 32'hDF058E1C;
+    #10 AVL_WRITE = 1;
+	 #10 AVL_CS = 1;
+	 #10 AVL_BYTE_EN = 4'hF;
+	 #10 AVL_ADDR = 4'h5;
+	 
+	 #10 AVL_WRITEDATA = 32'h39E814EA;
+    #10 AVL_WRITE = 1;
+	 #10 AVL_CS = 1;
+	 #10 AVL_BYTE_EN = 4'hF;
+	 #10 AVL_ADDR = 4'h6;
+	 
+	 #10 AVL_WRITEDATA = 32'h76F6747E;
+    #10 AVL_WRITE = 1;
+	 #10 AVL_CS = 1;
+	 #10 AVL_BYTE_EN = 4'hF;
+	 #10 AVL_ADDR = 4'h7;
+	 
+	 #10 AVL_WRITEDATA = 32'h00000001;
+    #10 AVL_WRITE = 1;
+	 #10 AVL_CS = 1;
+	 #10 AVL_BYTE_EN = 4'hF;
+	 #10 AVL_ADDR = 4'hE;
+end*/
+// Clock generation and initialization
+always begin : CLOCK_GENERATION
+    #1 CLK = ~CLK;
+end
+
+initial begin : CLOCK_INITIALIZATION
+    CLK = 0;
+end
+
+endmodule

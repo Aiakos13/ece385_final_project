@@ -1,0 +1,3 @@
+module  color_mapper ( input [15:0]   keycode,
+                       output logic [7:0] sprite_r, sprite_g, sprite_b // VGA RGB output
+                     );

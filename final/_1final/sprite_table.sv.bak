@@ -1,0 +1,4 @@
+module sprite_table(input logic [7:0] Sprite,
+						  input logic [9:0] DX, DY,
+						  input int hunger,happiness,
+						  output logic [7:0] color);

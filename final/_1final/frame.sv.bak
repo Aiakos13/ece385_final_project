@@ -1,0 +1,7 @@
+module frame (
+					input logic Clk,
+					input logic [9:0]x,y,
+					output logic [31:0] color
+					);
+					
+endmodule

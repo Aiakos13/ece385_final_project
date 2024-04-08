@@ -1,0 +1,9 @@
+12:49:49 **** Incremental Build of configuration Nios II for project sosleepy ****
+make all 
+Info: Building ../sosleepy_bsp/
+C:/altera/15.0/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../sosleepy_bsp/
+[BSP build complete]
+[sosleepy build complete]
+
+12:49:50 Build Finished (took 761ms)
+

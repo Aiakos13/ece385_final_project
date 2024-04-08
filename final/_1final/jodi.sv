@@ -1,0 +1,7 @@
+module jodi (		  input logic frame_clk,
+						  input logic [7:0] last_key_code,
+						  input logic [9:0] X, Y,
+						  // input int hunger,happiness,
+					     output logic [31:0] color);
+						  
+endmodule
